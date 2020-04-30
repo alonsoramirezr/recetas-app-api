@@ -8,7 +8,7 @@ class ModelTests(TestCase):
         # Prueba creando un nuevo usuario de manera exitosa
         email = 'prueba@gmail.com'
         password = 'prueba123'
-        usuario = get_user_model().objects.crear_usuario(
+        usuario = get_user_model().objects.create_user(
             email=email,
             password=password
         )
@@ -19,18 +19,18 @@ class ModelTests(TestCase):
     def test_nuevo_usuario_email_normalizado(self):
         # Prueba creada para validar correo a lower-case
         email = 'prueba@GMAIL.COM'
-        usuario = get_user_model().objects.crear_usuario(email, 'prueba123')
+        usuario = get_user_model().objects.create_user(email, 'prueba123')
 
         self.assertEqual(usuario.email, email.lower())
 
     def test_nuevo_usuario_email_invalido(self):
         # Prueba creada para validar que el email es valido
         with self.assertRaises(ValueError):
-            get_user_model().objects.crear_usuario(None, 'test123')
+            get_user_model().objects.create_user(None, 'test123')
 
     def test_super_usuario_creado(self):
         # Prueba creando un nuevo superusuario
-        usuario = get_user_model().objects.crear_superusuario(
+        usuario = get_user_model().objects.create_superuser(
             'test@gmail.com',
             'test123'
         )

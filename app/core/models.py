@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
 
 class UserManager(BaseUserManager):
 
-    def crear_usuario(self, email, password=None, **extra_fields):
+    def create_user(self, email, password=None, **extra_fields):
         # Crea y guarda un nuevo crear_usuario
         if not email:
             raise ValueError('El usuario debe un email')
@@ -15,9 +15,9 @@ class UserManager(BaseUserManager):
 
         return usuario
 
-    def crear_superusuario(self, email, password):
+    def create_superuser(self, email, password):
         # Crea y guarda un nuevo super usuario
-        usuario = self.crear_usuario(email, password)
+        usuario = self.create_user(email, password)
         usuario.is_staff = True
         usuario.is_superuser = True
         usuario.save(using=self._db)
