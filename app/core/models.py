@@ -7,7 +7,7 @@ from django.conf import settings
 
 
 def recipe_image_file_path(instance, filename):
-    # Genera un path para una nueva imagen de la receta
+    """Generate file path for new recipe image"""
     ext = filename.split('.')[-1]
     filename = f'{uuid.uuid4()}.{ext}'
 
